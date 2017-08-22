@@ -28,3 +28,14 @@ Use the test cases from the table below to validate the scoring logic of your pr
 | X7/9-X-88/-6XXX81     | (10+7+3) + (7+3+9) + 9 + (10+0+8) + 8 + (8+2+0) + 6 + (10+10+10) + (10+10+8) + (10+8+1)                                         | 167         |
 
 
+## Submission by David Crowley
+* 8/21/17 @ 11PM
+* Written on NodeJS v7.4.0
+#### Run it
+`node index.js`
+#### Example Output to Console
+`LINE: XXXXXXXXXXXX SCORE: 300
+LINE: 9-9-9-9-9-9-9-9-9-9- SCORE: 90
+LINE: 5/5/5/5/5/5/5/5/5/5/5 SCORE: 150
+LINE: X7/9-X-88/-6XXX81 SCORE: 167
+`
