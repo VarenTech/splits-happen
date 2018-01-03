@@ -28,4 +28,10 @@ public class GameTest {
 		g.setBowlingLine("9-9-9-9-9-9-9-9-9-9-");
 		assertEquals(g.score(), 90);
 	}
+	
+	@Test
+	public void allSparesScoreShouldBe150() {
+		g.setBowlingLine("5/5/5/5/5/5/5/5/5/5/5");
+		assertEquals(g.score(), 150);
+	}
 }
