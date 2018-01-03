@@ -18,10 +18,14 @@ public class GameTest {
 	
 	@Test
 	public void gutterGame() {
-		for(int i = 0; i < 20; i++) {
-			g.roll(0);
-		}
+		g.setBowlingLine("----------");
 		
 		assertEquals(g.score(), 0);
+	}
+	
+	@Test
+	public void allFramesNineScoreShouldBe90() {
+		g.setBowlingLine("9-9-9-9-9-9-9-9-9-9-");
+		assertEquals(g.score(), 90);
 	}
 }

@@ -2,8 +2,10 @@ package me.mcnamara.sean.bowling;
 
 public class Game {
 
-	public void roll(int i) {
-		//Do nothing
+	private String line;
+	
+	public void setBowlingLine(String line) {
+		this.line = line;
 	}
 
 	public int score() {
