@@ -18,20 +18,20 @@ public class GameTest {
 	
 	@Test
 	public void gutterGame() {
-		g.setBowlingLine("----------");
+		g.setBowlingLine("--------------------");
 		
-		assertEquals(g.score(), 0);
+		assertEquals(0, g.score());
 	}
 	
 	@Test
 	public void allFramesNineScoreShouldBe90() {
 		g.setBowlingLine("9-9-9-9-9-9-9-9-9-9-");
-		assertEquals(g.score(), 90);
+		assertEquals(90, g.score());
 	}
 	
 	@Test
 	public void allSparesScoreShouldBe150() {
 		g.setBowlingLine("5/5/5/5/5/5/5/5/5/5/5");
-		assertEquals(g.score(), 150);
+		assertEquals(150, g.score());
 	}
 }
