@@ -34,4 +34,10 @@ public class GameTest {
 		g.setBowlingLine("5/5/5/5/5/5/5/5/5/5/5");
 		assertEquals(150, g.score());
 	}
+	
+	@Test
+	public void perfectGameShouldBe300() {
+		g.setBowlingLine("XXXXXXXXXXXX");
+		assertEquals(300, g.score());
+	}
 }
