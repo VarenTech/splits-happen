@@ -32,6 +32,10 @@ public class Game {
 	private boolean isSpare(int index, int[] rolls) {
 		return index < rolls.length - 2 && rolls[index] < 10 && rolls[index] + rolls[index+1] == 10;
 	}
+	
+	private boolean isStrike(int index, int[] rolls) {
+		return index < rolls.length - 3 && rolls[index] == 10;
+	}
 
 	public int score() {
 		char[] chars = line.toCharArray();
@@ -40,15 +44,18 @@ public class Game {
 		int accum = 0;
 		
 		//Calculate score for an entire frame on each iteration
-		for(int index = 0; index < 20; index++) {
+		for(int index = 0; index < Math.min(20, rolls.length); index++) {
 			if(isSpare(index, rolls)) {
 				accum += 10 + rolls[index+2];
+				index++;
+			}
+			else if(isStrike(index, rolls)) {
+				accum += 10 + rolls[index+1] + rolls[index+2];
 			}
 			else {
 				accum += rolls[index] + (index+1 < rolls.length ? rolls[index+1] : 0);
+				index++;
 			}
-			
-			index++;
 		}
 		
 		return accum;
