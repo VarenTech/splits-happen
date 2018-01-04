@@ -16,12 +16,7 @@ public class GameTest {
 		g = new Game();
 	}
 	
-	@Test
-	public void gutterGame() {
-		g.setBowlingLine("--------------------");
-		
-		assertEquals(0, g.score());
-	}
+	//Required Tests
 	
 	@Test
 	public void allFramesNineScoreShouldBe90() {
@@ -39,5 +34,31 @@ public class GameTest {
 	public void perfectGameShouldBe300() {
 		g.setBowlingLine("XXXXXXXXXXXX");
 		assertEquals(300, g.score());
+	}
+	
+	@Test
+	public void acceptanceTestShouldBe167() {
+		g.setBowlingLine("X7/9-X-88/-6XXX81");
+		assertEquals(167, g.score());
+	}
+	
+	//"Warm Fuzzy" Tests I felt would be interesting
+	
+	@Test
+	public void gutterGame() {
+		g.setBowlingLine("--------------------");
+		assertEquals(0, g.score());
+	}
+	
+	@Test
+	public void allOnesShouldBe20() {
+		g.setBowlingLine("11111111111111111111");
+		assertEquals(20, g.score());
+	}
+	
+	@Test
+	public void allSpareTensShouldBe110() {
+		g.setBowlingLine("-/-/-/-/-/-/-/-/-/-/");
+		assertEquals(110, g.score());
 	}
 }

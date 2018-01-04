@@ -8,6 +8,7 @@ public class Game {
 		this.line = line;
 	}
 	
+	//Convert input character string into score value of each roll
 	private int[] charsToRolls(char[] chars) {
 		int[] retval = new int[chars.length];
 		
@@ -29,10 +30,12 @@ public class Game {
 		return retval;
 	}
 	
+	//Determine whether to add spare bonus
 	private boolean isSpare(int index, int[] rolls) {
 		return index < rolls.length - 2 && rolls[index] < 10 && rolls[index] + rolls[index+1] == 10;
 	}
 	
+	//Determine whether to add strike bonus
 	private boolean isStrike(int index, int[] rolls) {
 		return index < rolls.length - 3 && rolls[index] == 10;
 	}
