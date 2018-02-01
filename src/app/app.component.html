@@ -1,0 +1,14 @@
+<div class = "bowling">
+<h1>{{title}}</h1>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Score" [formControl]="gameCtrl" (keyup.enter) = "submit()">
+  </mat-form-field>
+  <button mat-button="secondary"(click)="submit()">Submit</button>
+  <button mat-button="primary"(click)="clear()">Clear Scores</button>
+
+  <br>
+<div *ngFor="let score of scores">
+  Game: {{score.game}} Score:{{score.score}}
+</div>
+</div>
