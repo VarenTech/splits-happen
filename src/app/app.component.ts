@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {forEach} from '@angular/router/src/utils/collection';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,9 @@ import 'rxjs/add/observable/of';
 })
 
 export class AppComponent implements OnInit {
+  gameCtrl = new FormControl();
   title = 'bowling score generator';
-  GAMES: string[] = [
+  TESTS: string[] = [
     'XXXXXXXXXXXX',
     '9-9-9-9-9-9-9-9-9-9-',
     '5/5/5/5/5/5/5/5/5/5/5',
@@ -24,12 +26,21 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    for (const game of this.GAMES) {
+    // testing scores
+   /* for (const game of this.TESTS) {
       const score = this.scoreGame(game);
       this.scores.push({game: game, score: score});
-    }
+    }*/
   }
 
+  submit(): void {
+    const score = this.scoreGame(this.gameCtrl.value);
+    this.scores.push({game: this.gameCtrl.value, score: score});
+  }
+
+  clear(): void {
+    this.scores = [];
+  }
   /*
   * Thus function converts the string into an array of array. Each array is a frame.
   * it also handles the final frame and bonus rolls
