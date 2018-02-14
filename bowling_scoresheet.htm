@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Bowling Scoresheet</title>
+    <script src="./script.js"></script>
+    <link href='./style.css' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <h2>Bowling Scoresheet</h2>
+
+    <div id='scoresheet'>
+      <table id='scoresheetTable' class='scoresheet' cellpadding='1' cellspacing='0'>
+        <tr>
+          <th colspan='6'>Frame 1</th>
+          <th colspan='6'>Frame 2</th>
+          <th colspan='6'>Frame 3</th>
+          <th colspan='6'>Frame 4</th>
+          <th colspan='6'>Frame 5</th>
+          <th colspan='6'>Frame 6</th>
+          <th colspan='6'>Frame 7</th>
+          <th colspan='6'>Frame 8</th>
+          <th colspan='6'>Frame 9</th>
+          <th colspan='6'>Frame 10</th>
+        </tr>
+        <tr>
+          <td colspan='3' id='Frame1_1'></td><td colspan='3' id='Frame1_2'></td>
+          <td colspan='3' id='Frame2_1'></td><td colspan='3' id='Frame2_2'></td>
+          <td colspan='3' id='Frame3_1'></td><td colspan='3' id='Frame3_2'></td>
+          <td colspan='3' id='Frame4_1'></td><td colspan='3' id='Frame4_2'></td>
+          <td colspan='3' id='Frame5_1'></td><td colspan='3' id='Frame5_2'></td>
+          <td colspan='3' id='Frame6_1'></td><td colspan='3' id='Frame6_2'></td>
+          <td colspan='3' id='Frame7_1'></td><td colspan='3' id='Frame7_2'></td>
+          <td colspan='3' id='Frame8_1'></td><td colspan='3' id='Frame8_2'></td>
+          <td colspan='3' id='Frame9_1'></td><td colspan='3' id='Frame9_2'></td>
+          <td colspan='2' id='Frame10_1'></td><td colspan='2' id='Frame10_2'></td><td colspan='2' id='Frame10_3'></td>
+        </tr>
+        <tr>
+          <td colspan='6' id='Frame1_score'></td>
+          <td colspan='6' id='Frame2_score'></td>
+          <td colspan='6' id='Frame3_score'></td>
+          <td colspan='6' id='Frame4_score'></td>
+          <td colspan='6' id='Frame5_score'></td>
+          <td colspan='6' id='Frame6_score'></td>
+          <td colspan='6' id='Frame7_score'></td>
+          <td colspan='6' id='Frame8_score'></td>
+          <td colspan='6' id='Frame9_score'></td>
+          <td colspan='6' id='Frame10_score'></td>
+        </tr>
+      </table>
+    </div>
+
+    <div>
+      <button type="button" id='pin0' onclick="pinsKnockedDown(0)">0</button>
+      <button type="button" id='pin1' onclick="pinsKnockedDown(1)">1</button>
+      <button type="button" id='pin2' onclick="pinsKnockedDown(2)">2</button>
+      <button type="button" id='pin3' onclick="pinsKnockedDown(3)">3</button>
+      <button type="button" id='pin4' onclick="pinsKnockedDown(4)">4</button>
+      <button type="button" id='pin5' onclick="pinsKnockedDown(5)">5</button>
+      <button type="button" id='pin6' onclick="pinsKnockedDown(6)">6</button>
+      <button type="button" id='pin7' onclick="pinsKnockedDown(7)">7</button>
+      <button type="button" id='pin8' onclick="pinsKnockedDown(8)">8</button>
+      <button type="button" id='pin9' onclick="pinsKnockedDown(9)">9</button>
+      <button type="button" id='pin10' onclick="pinsKnockedDown(10)">10</button>
+    </div>
+
+    <div style='margin-top:20px'>
+      <button type="button" onclick="reset()">Reset</button>
+    </div>
+
+  </body>
+</html>
