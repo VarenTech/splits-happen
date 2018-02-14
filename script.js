@@ -9,14 +9,14 @@ function pinsKnockedDown(numOfPinsDown) {
 
 function refreshFrames(frames, numOfPinsDown) {
   if (frames.length == 0) {
-    let newFrame = createFrame(1, [numOfPinsDown], null, null);
+    let newFrame = createFrame(1, [numOfPinsDown], null);
     frames.push(newFrame);
     return;
   }
 
   let frame = frames[frames.length - 1];
   if (frame.isCompleted()) {
-    let newFrame = createFrame(frame.frameNum + 1, [numOfPinsDown], null, null);
+    let newFrame = createFrame(frame.frameNum + 1, [numOfPinsDown], null);
     frames.push(newFrame);
   } else {
     frame.rolls[frame.getSlot()] = numOfPinsDown;
@@ -170,7 +170,7 @@ function updateRunningTotal(frames, scoreStack) {
   return runningTotal;
 }
 
-/***** Blowling frames *****/
+/***** Bowling frames *****/
 function Frame(frameNum, rolls, runningTotal) {
   this.frameNum = frameNum;
   this.rolls = rolls;
