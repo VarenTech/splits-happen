@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type = "text/javascript" src = "calculation.js"></script>
+        <style>
+            body {
+                text-align: center;
+            }
+            #wrapper {
+                border: 1px solid #000;
+                width: 50%;
+                margin: 0 auto;
+                padding: 1.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "wrapper">
+            <h1>Splits Happen</h1><h3>Bowling Score Calculator</h3>
+            <input id = "scoreCard">
+            <button class = "submitButton" onclick = "generateScore()">Submit</button>
+            <br>
+            <br>
+            <div>Total Score:</div>
+            <div id = "scores"></div>
+        </div>
+    </body>
+</html>
