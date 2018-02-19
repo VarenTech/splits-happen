@@ -28,3 +28,15 @@ Use the test cases from the table below to validate the scoring logic of your pr
 | X7/9-X-88/-6XXX81     | (10+7+3) + (7+3+9) + 9 + (10+0+8) + 8 + (8+2+0) + 6 + (10+10+10) + (10+10+8) + (10+8+1)                                         | 167         |
 
 
+## Additional Files
+
+- `SplitsHappen.pm` - Perl module implementing the scoring algorithm.
+Documentation is available via `perldoc SplitsHappen.pm`.
+- `test.pl` - an example driver for `SplitsHappen.pm`
+- `test-cases.ods` - validation of test case values
+- `gencases.pl` - a simple generator for test cases (but doesn't know most
+of the rules for this program, so the output needs to be validated before
+use.)
+
+This software is under the BSD 3-Part License, as explained in the `LICENSE`
+file.
