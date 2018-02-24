@@ -25,35 +25,16 @@ function refreshFrames(frames, numOfPinsDown) {
 
 function refreshPins(frames) {
   let frame = frames[frames.length - 1];
+  let numOfPinsDown = frame.getPinsDown();
+  let bDisabled = true;
 
-  if (frame.frameNum == 10) {
-    if (frame.isCompleted()) {
-      for (let i = 0; i <= 10; i++) {
-        document.getElementById('pin' + i).disabled = true;
-      }
-    } else {
-      if (frame.isStrike() || frame.isSpare()) {
-        for (let i = 0; i <= 10; i++) {
-          document.getElementById('pin' + i).disabled = false;
-        }
-      } else {
-        let lastRoll = Number(frame.rolls[frame.rolls.length - 1]);
-        for (let i = 10; i > (10 - lastRoll); i--) {
-          document.getElementById('pin' + i).disabled = true;
-        }
-      }
-    }
-  } else {
-    if (frame.isCompleted()) {
-      for (let i = 0; i <= 10; i++) {
-        document.getElementById('pin' + i).disabled = false;
-      }
-    } else {
-      let firstRoll = Number(frame.rolls[0]);
-      for (let i = 10; i > (10 - firstRoll); i--) {
-        document.getElementById('pin' + i).disabled = true;
-      }
-    }
+  if (numOfPinsDown == 0) {
+    numOfPinsDown = 11; // Reset 0th pin too.
+    bDisabled = false;
+  }
+
+  for (let i = 10; i > (10 - numOfPinsDown); i--) {
+    document.getElementById('pin' + i).disabled = bDisabled;
   }
 }
 
@@ -76,6 +57,7 @@ function readScores() {
 
     let rolls = [];
 
+    // Tenth frame scoring needs special attention.
     if (i == 10) {
       firstRoll = (firstRoll === 'X') ? 10 : Number(firstRoll);
       rolls.push(firstRoll);
@@ -127,6 +109,9 @@ function writeScore(frames) {
   updateRunningTotal(frames, scoreStack);
 }
 
+/**
+ * Recursively goes into previous frames to calculate strikes and spares.
+ */
 function updateRunningTotal(frames, scoreStack) {
   let frame = frames.pop();
 
@@ -197,10 +182,14 @@ Frame.prototype.getSlot = function() {
   return (this.isCompleted() ? 2 : 1);
 };
 
+Frame.prototype.getPinsDown = function() {
+  return (this.isCompleted() ? 0 : this.rolls[0]);
+};
+
+// TenthFrame subclasses generic Frame class.
 function TenthFrame(frameNum, rolls, runningTotal) {
   Frame.call(this, frameNum, rolls, runningTotal);
 }
-
 TenthFrame.prototype = Object.create(Frame.prototype);
 TenthFrame.prototype.constructor = TenthFrame;
 
@@ -219,6 +208,16 @@ TenthFrame.prototype.isStrike = function() {
 
 TenthFrame.prototype.getSlot = function() {
   return this.rolls.length;
+};
+
+TenthFrame.prototype.getPinsDown = function() {
+  if (this.isCompleted()) {
+    return 11; // Disable 0th pin too.
+  } else if (this.isStrike() || this.isSpare()) {
+    return 0;
+  } else {
+    return this.rolls[this.getSlot() - 1];
+  }
 };
 
 function createFrame(frameNum, rolls, runningTotal) {
@@ -247,7 +246,7 @@ function reset() {
   document.getElementById('Frame10_3').innerHTML = null;
 
   let frames = [];
-  frames.push(createFrame(1, [0, 10], null));
+  frames.push(createFrame(1, [0], null));
   refreshPins(frames);
 }
 
