@@ -167,7 +167,7 @@ Frame.prototype.isStrike = function() {
 };
 
 Frame.prototype.isCompleted = function() {
-  return isInt(this.rolls[1]) || Number(this.rolls[0]) == 10;
+  return isInt(this.rolls[1]) || this.isStrike();
 };
 
 Frame.prototype.isSpare = function() {
@@ -196,7 +196,7 @@ TenthFrame.prototype.constructor = TenthFrame;
 TenthFrame.prototype.isCompleted = function() {
   if (this.rolls.length == 3 ||
       (isInt(this.rolls[0]) && isInt(this.rolls[1]) &&
-       (Number(this.rolls[0]) + Number(this.rolls[1]) < 10))) {
+       (this.rolls[0] + this.rolls[1] < 10))) {
     return true;
   }
   return false;
