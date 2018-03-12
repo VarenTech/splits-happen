@@ -1,5 +1,13 @@
 # Design and Development Challenge – Bowling Score
 
+## Execution
+*   This is compatible with both python2.7 and 3.x 
+*   To execute the bowling command type: 
+*        python3 bowling.py <string>
+    The input value is the "Program Input" (ex: "5/5/5/5/5/5/5/5/5/5/5/5")   
+*   To execute the bowling test type: 
+*        python3 test_bowling.py
+
 ## Requirement
 Create a program which, given a valid sequence of rolls for one line of American Ten-Pin Bowling, produces the total score for the game. Fork this repository, build your program in the language of your choice, then submit a pull request with your code.
 
