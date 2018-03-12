@@ -18,7 +18,4 @@ public class FrameMiss implements BowlingFrame{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
-	
 }
