@@ -9,8 +9,8 @@ import com.dkward.bowling.frame.FrameStrike;
 
 public class StrikeFrameAnalyzerTest {
 
-	private static final String VALID_STRIKE_FRAME = "X";
-    private static final String INVALID_STRIKE_FRAME = "7";
+	private static final String good_frame = "X";
+    private static final String bad_frame = "7";
 
     private AnalyzeStrikeFrame strikeFrameParser;
 
@@ -21,14 +21,14 @@ public class StrikeFrameAnalyzerTest {
 
     @Test
     public void shouldReturnStrikeFrame() {
-        BowlingFrame result = strikeFrameParser.checckTheFrame(VALID_STRIKE_FRAME);
+        BowlingFrame result = strikeFrameParser.checckTheFrame(good_frame);
 
         assertTrue(result instanceof FrameStrike);
     }
 
     @Test
     public void shouldReturnNullFrame() {
-    	BowlingFrame result = strikeFrameParser.checckTheFrame(INVALID_STRIKE_FRAME);
+    	BowlingFrame result = strikeFrameParser.checckTheFrame(bad_frame);
 
         assertNull(result);
     }
