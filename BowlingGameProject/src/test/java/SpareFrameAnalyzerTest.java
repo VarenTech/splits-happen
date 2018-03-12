@@ -10,8 +10,8 @@ import com.dkward.bowling.frame.FrameSpare;
 public class SpareFrameAnalyzerTest {
 
 	
-	    private static final String VALID_SPARE_FRAME = "4/";
-	    private static final String INVALID_SPARE_FRAME = "7-";
+	    private static final String good_frame = "4/";
+	    private static final String bad_frame = "7-";
 
 	    private AnalyzeSpareFrame spareFrameParser;
 
@@ -22,14 +22,14 @@ public class SpareFrameAnalyzerTest {
 
 	    @Test
 	    public void shouldReturnStrikeFrame() {
-	    	BowlingFrame result = spareFrameParser.checckTheFrame(VALID_SPARE_FRAME);
+	    	BowlingFrame result = spareFrameParser.checckTheFrame(good_frame);
 
 	        assertTrue(result instanceof FrameSpare);
 	    }
 
 	    @Test
 	    public void shouldReturnNullFrame() {
-	        BowlingFrame result = spareFrameParser.checckTheFrame(INVALID_SPARE_FRAME);
+	        BowlingFrame result = spareFrameParser.checckTheFrame(bad_frame);
 
 	        assertNull(result);
 	    }
