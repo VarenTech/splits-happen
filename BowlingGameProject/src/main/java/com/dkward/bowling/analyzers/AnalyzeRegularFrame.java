@@ -8,12 +8,10 @@ public class AnalyzeRegularFrame implements FrameAnalyzer{
 			
 	private static final String nothing = "-";
 
-	
-	
 	public BowlingFrame checckTheFrame(String bowlingFrame) {
 		
-		// TODO Auto-generated method stub
-		BowlingFrame result = null;
+	// TODO Auto-generated method stub
+	BowlingFrame result = null;
         if (isItAValidFrame(bowlingFrame)) {
             int theFirstRoll = getTheScore(bowlingFrame.charAt(0) + "");
             int theSecondRoll = getTheScore(bowlingFrame.charAt(1) + "");
@@ -37,7 +35,7 @@ public class AnalyzeRegularFrame implements FrameAnalyzer{
 	            score = Integer.parseInt(partialFrame);
 	        }
 	        return score;
-	    }
+	}
 
 		
 }
