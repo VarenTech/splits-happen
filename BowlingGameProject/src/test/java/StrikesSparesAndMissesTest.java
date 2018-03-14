@@ -31,7 +31,7 @@ public class StrikesSparesAndMissesTest {
     }
 
 
-   /* @Test
+    @Test
     public void shouldReturnSumOfNormalFramesAsScore() {
         for (int i = 0; i < 10; i++) {
             RegularFrame regularFrame = new RegularFrame(i, 0);
@@ -60,9 +60,5 @@ public class StrikesSparesAndMissesTest {
         }
 
         assertEquals(200, bowlingGame.getTheScore());
-    }*/
-
-
-   
- 
+    }
 }
