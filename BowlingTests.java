@@ -175,5 +175,5 @@ public class BowlingTests {
 
 		assertEquals(myScore, 167);
 	}
-
+  
 }
