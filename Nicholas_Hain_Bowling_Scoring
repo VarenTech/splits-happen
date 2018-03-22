@@ -1,0 +1,175 @@
+import java.util.Scanner;
+
+public class BowlingScore {
+    public char[] getCharacters() { //Split the String into characters and put them into an array
+        Scanner sc = new Scanner(System.in);
+        String scoreLine = sc.next(); //Line of bowling scores going to a character array
+        char charArray[] = scoreLine.toCharArray(); //Casts string to a character array
+        return charArray;
+    }
+
+    public void getTotal(char[] charArray) {
+        int frameFigure = 0; //Keeps track of when frames change when taken mod 2
+        int runningTotal = 0; //Keeps the total number of points in the game
+        int currentFrame = 1; //Keeps track of the frame
+        for (int i = 0; i < charArray.length; i++) {
+            //Calculates what frame the program is currently in
+            if (frameFigure != 0 && frameFigure % 2 == 0 && currentFrame != 10) {
+                currentFrame++;
+            }
+            if (currentFrame < 10) {
+                //Makes sure that the current number is not a strike or a spare.
+                // Strikes and spares are handled later.
+                if (charArray[i] != '/' && charArray[i] != 'X') {
+                    if (charArray[i + 1] != '/') {
+                        if (charArray[i] == '-') {
+                            runningTotal += 0;
+                        } else {
+                            runningTotal += charArray[i] - '0';
+
+                        }
+                    } else {
+                        runningTotal += 0;
+                    }
+                    frameFigure++;
+                }
+                //Handling all cases of spares here for frames 1-9.
+                else if (charArray[i] == '/') {
+                    if (charArray[i+1] == '-') {
+                        runningTotal += 10;
+                    }
+                    else if (charArray[i+1] == 'X') {
+                        runningTotal += 20;
+                    }
+                    else {
+                        runningTotal += 10 + charArray[i+1] - '0';
+                    }
+                    frameFigure++;
+                }
+                //Handling all strikes for frames 1-9.
+                else if (charArray[i] == 'X') {
+                    //Two strikes in the next two frames
+                    if (charArray[i+1] == 'X' && charArray[i+2] == 'X') {
+                        runningTotal += 30;
+                    }
+                    //One strike in the next frame
+                    else if (charArray[i+1] == 'X' && charArray[i+2] != 'X') {
+                        if (charArray[i+2] == '-') {
+                            runningTotal += 20;
+                        }
+                        else {
+                            runningTotal += 20 + charArray[i+2] - '0';
+                        }
+                    }
+                    //No strikes in next two frames.
+                    else {
+                        if (charArray[i+2] == '/') {
+                            runningTotal += 20;
+                        }
+                        else {
+                            //Two 0's in a row.
+                            if (charArray[i+1] == '-' && charArray[i+2] == '-') {
+                                runningTotal += 10;
+                            }
+                            //First one after strike is 0. Second is [1-9]
+                            else if (charArray[i+1] == '-') {
+                                runningTotal += 10 + charArray[i+2] - '0';
+                            }
+                            //First one after strike is [1-9]. Second is 0.
+                            else if (charArray[i+2] == '-') {
+                                runningTotal += 10 + charArray[i+1] - '0';
+                            }
+                            //Both after strike are [1-9][1-9].
+                            else {
+                                runningTotal += 10 + charArray[i+1] - '0' + charArray[i+2] - '0';
+                            }
+                        }
+                    }
+                    frameFigure += 2;
+                }
+
+
+            }
+            //Tenth Frame code only
+            else {
+                //Handle strikes in tenth frame.
+                if (charArray[i] == 'X') {
+                    //Frame of all strikes
+                    if (charArray[i+1] == 'X' && charArray[i+2] == 'X') {
+                        runningTotal += 30;
+                        break;
+                    }
+                    //Frame of two strikes in a row, followed by pins between [0-9]
+                    else if (charArray[i+1] == 'X' && charArray[i+2] != 'X') {
+                        if (charArray[i+2] == '-') {
+                            runningTotal += 20;
+                        }
+                        else {
+                            runningTotal += 20 + charArray[i+2] -'0';
+                        }
+                        break;
+                    }
+                    //Frame of one strike, followed by whatever else comes after. Handles spares as well.
+                    else if (charArray[i+1] != 'X' && charArray[i+2] != 'X') {
+                        //If there is a spare in the last of the tenth frame.
+                        if (charArray[i+2] == '/') {
+                            runningTotal += 20;
+                        }
+                        //Any other combination of pins knocked down, not including strikes or spares.
+                        else {
+                            if (charArray[i+1] == '-' && charArray[i+2] == '-') {
+                                runningTotal += 10;
+                            }
+                            else if (charArray[i+1] != '-' && charArray[i+2] == '-') {
+                                runningTotal += 10 + charArray[i+1] - '0';
+                            }
+                            else if (charArray[i+1] == '-' && charArray[i+2] != '-') {
+                                runningTotal += 10 + charArray[i+2] - '0';
+                            }
+                            else {
+                                runningTotal += 10 + charArray[i+1] - '0' + charArray[i+2] - '0';
+                            }
+                        }
+                        break;
+                    }
+                }
+                //Handles all spares, after the first part of the tenth frame.
+                else if (charArray[i] != 'X' && charArray[i+1] == '/') {
+                    if (charArray[i+2] == '-') {
+                        runningTotal += 10;
+                    }
+                    else if (charArray[i+2] == 'X') {
+                        runningTotal += 20;
+                    }
+                    else {
+                        runningTotal += 10 + charArray[i+2] - '0';
+                    }
+                    break;
+                }
+                else {
+                    //Handles all cases that do not include spares or strikes.
+                    if (charArray[i] == '-' && charArray[i+1] == '-') {
+                        runningTotal += 0;
+                    }
+                    else if (charArray[i] != '-' && charArray[i+1] == '-') {
+                        runningTotal += charArray[i] - '0';
+                    }
+                    else if (charArray[i] == '-' && charArray[i+1] != '-') {
+                        runningTotal += charArray[i+1] - '0';
+                    }
+                    else {
+                        runningTotal += charArray[i] - '0' + charArray[i+1] - '0';
+                    }
+                    break;
+                }
+            }
+        }
+        System.out.println("Final Score is: " + runningTotal);
+    }
+
+    public static void main(String[] args) {
+        BowlingScore score = new BowlingScore();
+        char[] array = score.getCharacters();
+        score.getTotal(array);
+    }
+}
