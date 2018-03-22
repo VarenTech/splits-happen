@@ -27,4 +27,13 @@ Use the test cases from the table below to validate the scoring logic of your pr
 | 5/5/5/5/5/5/5/5/5/5/5 | (10+5) + (10+5) + (10+5) + (10+5) + (10+5) + (10+5) + (10+5) + (10+5) + (10+5) + (10+5)                                         | 150         |
 | X7/9-X-88/-6XXX81     | (10+7+3) + (7+3+9) + 9 + (10+0+8) + 8 + (8+2+0) + 6 + (10+10+10) + (10+10+8) + (10+8+1)                                         | 167         |
 
+# Dustin DiMattia Submission
 
+## Executable
+This branch includes an executable jar, if you prefer to run the program that way. Simply use the command "java -jar splits_happen_executable.jar NNNNNNNNNN", where NNNNNNNNNN is the game input.
+
+## Assumptions
+* X will always be a capital X.
+* The second number in a frame denotes the number of pins knocked down that roll, not that frame. e.g. a frame of '34' would give a score of 7 (3 + 4), not 4.
+* Unused throws will not be present in the input string. i.e. a frame with a strike is never represented as 'X-'
+If these assumptions are incorrect, please inform me, and I will correct the implementation.
