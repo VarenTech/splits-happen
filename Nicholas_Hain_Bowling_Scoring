@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class BowlingScore {
     public char[] getCharacters() { //Split the String into characters and put them into an array
+        System.out.println("Please enter your bowling score as a single string.");
         Scanner sc = new Scanner(System.in);
         String scoreLine = sc.next(); //Line of bowling scores going to a character array
         char charArray[] = scoreLine.toCharArray(); //Casts string to a character array
