@@ -1,0 +1,6 @@
+# Bowling Score Tracker
+# Jason Corekin
+
+This project was written to run as a war file within TomCat 8.5, but should run within any standard web container.
+
+This project should correctly calculate the players scores for any number of players for a game of Ten Pin American Bowling. Although the project description was to calculate only one player's score, since it was not much more of a challenge to provide capacity to handle more players and it helped in testing, this feature was added.  Normally, if this were a project being given to a client, I would discuss the development of added features beyond the original scope and let them decide whether they wanted it added.  That said, seeing as the purpose of this project was to provide an ability to show my skill set, I chose to add the feature anyways.  Along the same thought process, there are other features of the project that should be obvioius that were also added in order to show what I can do, once again if this were a real project, these features would only have been included had the client agreed they wanted them. 
