@@ -1,0 +1,151 @@
+<html ng-app="SplitsHappenApp">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/lodash@latest/lodash.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/angular@latest/angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-controller="SplitsHappenCtrl">
+            <div class="row">
+                <span class="col-md-5"></span>
+                <h2 class="col-md-2">Splits Happen</h2>
+                <span class="col-md-5"></span>
+            </div>
+            <div class="row">
+                <form id="form0" name="form" ng-submit="run(game)">
+                    <span class="col-md-2"></span>
+                    <h2 class="col-md-8"><input type="text" id="score0" name="score" ng-model="game.pins" style="width: 100%;"></h2>
+                    <span class="col-md-2"></span>
+                </form>
+            </div>
+            <div class="row">
+                <span class="col-md-2"></span>
+                <h2 class="col-md-8">Total score: {{game.total_score}}</h2>
+                <span class="col-md-2"></span>
+            </div>
+        </div>
+
+        <script >
+        var app = angular.module("SplitsHappenApp", []);
+
+        app.controller("SplitsHappenCtrl", function($scope, $http) {
+            // return if value is strike
+            function is_strike(value) {
+                return (value == 'X');
+            }
+
+            // return if value is spare
+            function is_spare(value) {
+                return (_.endsWith(value, '/'));
+            }
+
+            // calculate strike bonus
+            function get_strike_bonus(game, cnt_frame) {
+                var bonus0 = 0;
+                var bonus1 = 0;
+                if (is_strike(game.frames[cnt_frame+1])) {  // add 10 if 1st bonus is strike
+                    bonus0 = 10;
+                    if (is_strike(game.frames[cnt_frame+2])) {  // add 10 if 2nd bonus is strike
+                        bonus1 = 10;
+                    }
+                    else {
+                        // add approprate score if 2nd bonus is not a strike but is a number value
+                        if (/[\d]/.test(game.frames[cnt_frame+2].split('')[0])) {
+                            bonus1 = parseInt(game.frames[cnt_frame+2].split('')[0]);
+                        }
+                    }
+                }
+                else {
+                    var rolls = game.frames[cnt_frame+1].split('');
+                    // add value of 1st roll
+                    bonus0 = (/[\d]/.test(rolls[0])) ? parseInt(rolls[0]) : 0 ;
+                    // calculate value of 2nd roll if spare
+                    if (rolls[1] == '/') {
+                        bonus1 = 10 - bonus0;
+                    }
+                    // add value of 2nd roll if not a spare
+                    else {
+                        bonus1 = (/[\d]/.test(rolls[1])) ? parseInt(rolls[1]) : 0 ;
+                    }
+                }
+                // return sum of both bonus values
+                return bonus0 + bonus1;
+            }
+
+            // calculate spare bonus
+            function get_spare_bonus(game, cnt_frame) {
+                var bonus = 0;
+                if (is_strike(game.frames[cnt_frame+1])) {  // add 10 if 1st bonus is strike
+                    bonus = 10;
+                }
+                else {
+                    var rolls = game.frames[cnt_frame+1].split('');
+                    bonus = (/[\d]/.test(rolls[0])) ? parseInt(rolls[0]) : 0 ;
+                }
+                return bonus;
+            }
+
+            $scope.game = {
+                pins: '',
+                frames: [],
+                total_score: 0 
+            };
+
+            // parse string on digits, `X`, `/`, and `-` to form frames and return them as array
+            $scope.game.get_pins_per_frame = function() {
+                this.total_score = 0;
+                this.frames = this.pins.match(/[\-0-9]?[0-9X\-\/]/g);
+                return this;
+            }
+
+            $scope.game.calculate_score = function() {
+                // loop through first 9 frames
+                for (var cnt = 0; cnt <= 8; cnt++) {
+                    if (is_strike(this.frames[cnt])) {
+                        this.total_score += 10 + get_strike_bonus(this, cnt);
+                    }
+                    else if (is_spare(this.frames[cnt])) {
+                        this.total_score += 10 + get_spare_bonus(this, cnt);
+                    }
+                    else {
+                        var rolls = this.frames[cnt].split('');
+                        var roll_value0 = (rolls[0] != '-') ? parseInt(rolls[0]) : 0;
+                        var roll_value1 = (rolls[1] != '-') ? parseInt(rolls[1]) : 0;
+                        this.total_score += roll_value0 + roll_value1;
+                    }
+                }
+
+                // calculating for last (10th) frame
+                var last_frame = this.frames[9] + this.frames[10];
+                last_frame += (typeof(this.frames[11]) !== 'undefined') ? this.frames[11] : '';
+                last_frame_rolls = last_frame.split('');
+                for (var cnt = 0; cnt < 3; cnt++) {
+                    if (typeof(last_frame_rolls[cnt]) !== 'undefined') {
+                        switch(last_frame_rolls[cnt]) {
+                            case 'X':
+                                this.total_score += 10;
+                                break;
+                            case '/':
+                                this.total_score += 10 - parseInt(last_frame_rolls[cnt-1]);
+                                break;
+                            case '-':
+                                break;
+                            case 'u':   // for handling undefined 3rd roll
+                                break;
+                            default:
+                                this.total_score += parseInt(last_frame_rolls[cnt]);
+                        }
+                    }
+                }
+                return this;
+            }
+
+            $scope.run = function(game) {
+                game
+                .get_pins_per_frame()
+                .calculate_score();
+            }
+        });
+        </script>
+    </body>
+</html>
