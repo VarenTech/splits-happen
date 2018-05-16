@@ -1,0 +1,6 @@
+Build instructions from command line:
+./build.sh
+
+Run instructions from command line:
+cd bin
+java com.kogut.BowlingScore XXXXXXXXXXXX
