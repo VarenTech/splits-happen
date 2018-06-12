@@ -1,0 +1,26 @@
+body {
+    background: #eee;
+    font-family: 'Roboto', sans-serif;
+}
+
+div {
+    text-align: center;
+}
+
+input {
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+}
+
+button {
+    background: green;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+}
+
+button:hover, input:focus {
+    box-shadow: 0 0 2px 2px green;
+}
