@@ -27,7 +27,7 @@ def main():
 	#	We assume, as per the instructions, that the input is well formed
 
 	index = 0
-	for frame in range(1, 11):
+	for frame in range(10):
 		# If a strike was thrown in the current frame
 		if(game[index] == "X"):
 			# Increment the score accordingly for this frame
