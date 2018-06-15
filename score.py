@@ -11,8 +11,7 @@ def main():
 	# Verify that we have enough arguments (otherwise get input from command line)
 	if len(sys.argv) < 2:
 		# Nothing found on command line, prompt for input
-		game = "X7/9-X-88/-6XXX81"
-		#game = input("Please input the game line:")
+		game = input("Please input the game line:")
 	else:
 		# Receive the input from the command line
 		game = sys.argv[1]
