@@ -49,18 +49,19 @@ var bowlingScore = function (bowlingLine) {
 		bonusRolls = 1;
 	} 
 
-	// Use bonus roll to determine 
-	let gameFrameLength = frames.length - bonusRolls;
-	
-	// Score Logic
-
-	//
+ 	// Declare variables that holds score total and condition for final frame scoring  
 	let runningScore = 0; 
+	let gameFrameLength = frames.length - bonusRolls;
+
+	// Score Logic
+	// Add values from scores array with strike and spare conditions.
 	for(let i = 0; i < gameFrameLength; i++){
 		runningScore = runningScore + scores[i];
+		// Condition for Strike.
 		if(frames[i] === 'X') {
 			runningScore += scores[i+1] + scores[i+2];
 		}
+		// Condition for Spare
 		if(frames[i] === '/') {
 			runningScore += scores[i+1];
 		}
@@ -73,9 +74,9 @@ var bowlingScore = function (bowlingLine) {
 
 //Program Input Test Cases
 
-bowlingScore("XXXXXXXXXXXX");
-bowlingScore("9-9-9-9-9-9-9-9-9-9-");
-bowlingScore("5/5/5/5/5/5/5/5/5/5/5");
-bowlingScore("X7/9-X-88/-6XXX81");
+// bowlingScore("XXXXXXXXXXXX");
+// bowlingScore("9-9-9-9-9-9-9-9-9-9-");
+// bowlingScore("5/5/5/5/5/5/5/5/5/5/5");
+// bowlingScore("X7/9-X-88/-6XXX81");
 
 
