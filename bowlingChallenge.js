@@ -64,6 +64,7 @@ var bowlingScore = function (bowlingLine) {
 			runningScore += scores[i+1];
 		}
 	}
+	//Output score to console
 	console.log("Total Score: " + runningScore);
 
 
