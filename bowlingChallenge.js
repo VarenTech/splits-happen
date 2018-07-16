@@ -79,4 +79,3 @@ bowlingScore("5/5/5/5/5/5/5/5/5/5/5");
 bowlingScore("X7/9-X-88/-6XXX81");
 
 
-exports.data = bowlingScore;
