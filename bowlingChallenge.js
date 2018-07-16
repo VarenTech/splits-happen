@@ -17,10 +17,9 @@ var bowlingScore = function (bowlingLine) {
 
 	// Use split method to take input string parameter and split up into array of substrings to seperate each roll and frame
 	let frames = bowlingLine.split("");
-	// console.log(frames[frames.length-3]);
-	// console.log(frames.length);
+	
 
-	// Array being initialized for successfull roll scores
+	// Array initialized for successfull corresponding integer roll scores.
 	let scores = [];
 
 	// Loop through frames and determine successfull integer score entries for each roll
@@ -37,11 +36,10 @@ var bowlingScore = function (bowlingLine) {
 		}
 	}
 
-	// console.log(scores);
+	
 
 	// Bonus rolls will have to be determined for later scoring total
-	// Determine bonus rolls, and set bonusRolls to either 2 or 1 to determine scoring for  
-	// Final frame
+	// Determine bonus rolls, and set bonusRolls to either 2 or 1 to determine scoring for Final frame
 	let bonusRolls = 0;
 	if((frames[frames.length-3]) === 'X') {
 		bonusRolls = 2;
@@ -54,14 +52,14 @@ var bowlingScore = function (bowlingLine) {
 	let gameFrameLength = frames.length - bonusRolls;
 
 	// Score Logic
-	// Add values from scores array with strike and spare conditions.
+	// Calculate score from scores array integer values with strike and spare conditions.
 	for(let i = 0; i < gameFrameLength; i++){
 		runningScore = runningScore + scores[i];
 		// Condition for Strike.
 		if(frames[i] === 'X') {
 			runningScore += scores[i+1] + scores[i+2];
 		}
-		// Condition for Spare
+		// Condition for Spare.
 		if(frames[i] === '/') {
 			runningScore += scores[i+1];
 		}
