@@ -1,13 +1,15 @@
+package sample;
+
 import java.util.*;
 
 public class BowlingScore {
 
     public static void main(String [] args){
         //Initlization of Example Arrays
-        String rolls1 = "XXXXXXXXXXXX";
-        String rolls2 = "9-9-9-9-9-9-9-9-9-9-";
-        String rolls3 = "5/5/5/5/5/5/5/5/5/5/5";
-        String rolls4 = "X7/9-X-88/-6XXX81";
+        String rolls1 = "XXXXXXXXXXXX"; //300
+        String rolls2 = "9-9-9-9-9-9-9-9-9-9-"; //90
+        String rolls3 = "5/5/5/5/5/5/5/5/5/5/5"; //150
+        String rolls4 = "X7/9-X-88/-6XXX81"; //167
 
         //Arrays passed into the Bowling Rolls Object
         BowlingRolls r1 = new BowlingRolls(rolls1);

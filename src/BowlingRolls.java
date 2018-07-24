@@ -1,15 +1,18 @@
+package sample;
+
 import java.util.*;
 
 public class BowlingRolls {
-
     String gameRolls;
     int[] rollsScore;
+//    int frame;
 
     //Bowling Rolls Constructor
     public BowlingRolls(String rolls) {
         //Initializes the BowlingRolls object
         this.gameRolls = rolls;
         this.rollsScore = new int[rolls.length()];
+//        this.frame = 1;
     }
 
     //This Private Method will convert the character values into the integer values necessary
@@ -25,6 +28,10 @@ public class BowlingRolls {
             else
                 rollsScore[i] = (Character.getNumericValue(gameRolls.charAt(i)));
         }
+        System.out.println("\nValues entered convert to:");
+        printArray(rollsScore);
+        System.out.println();
+        System.out.print("Score: \n");
     }
 
 
@@ -33,22 +40,41 @@ public class BowlingRolls {
         drawOutValues();
         //Raw Score variable will be the actual score
         int rawScore = 0;
-        for (int i = 0; i < 10; i++) {
+        int numFrames = 10;
+        int currentFrame = 1;
+        int currentIndex = 0;
+
+        while (currentFrame <= numFrames) {
             //a "strike". His turn is over, and his score for the frame is ten plus
             //the simple total of the pins knocked down in his next two rolls.
-            if (rollsScore[i] == 10)
-                rawScore += 10 + rollsScore[i + 1] + rollsScore[i + 2];
+            if (rollsScore[currentIndex] == 10) {
+                rawScore += 10 + rollsScore[currentIndex + 1] + rollsScore[currentIndex + 2];
+                currentFrame++;
+                currentIndex++;
 
-            //a 'spare" and his score for the frame is ten plus the number of pins
+            } else {
+                //a 'spare" and his score for the frame is ten plus the number of pins
+
                 // knocked down on his next throw (in his next turn).
-            else if ((rollsScore[i] + rollsScore[i + 1]) == 10) {
-                rawScore += 10 + rollsScore[i + 2];
+                if ((rollsScore[currentIndex] + rollsScore[currentIndex + 1]) == 10) {
+                    rawScore += 10 + rollsScore[currentIndex + 2];
+
+                } else {
+                    rawScore += rollsScore[currentIndex] + rollsScore[currentIndex + 1];
+
+                }
+                currentFrame++;
+                currentIndex += 2;
             }
-            else {
-                rawScore += rollsScore[i] + rollsScore[i + 1];
-            }
+
         }
         return rawScore;
     }
 
+
+    public void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
 }
