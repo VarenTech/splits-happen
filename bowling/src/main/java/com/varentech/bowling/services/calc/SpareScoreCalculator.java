@@ -20,6 +20,7 @@ public class SpareScoreCalculator extends AbstractScoreCalculator {
     public int processScore() {
         scoreContext.increaseBonusHorizon();
         int priorValue = scoreContext.getPriorValue();
+        modMultiplierForFrame();
         return multiplier * (10 - priorValue);
     }
     
